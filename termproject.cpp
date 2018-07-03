@@ -22,7 +22,6 @@ void input()
 {
 	int i, j;
 
-	// reading from csv
 	ifstream icsA("inputICSA.csv");
 
 
@@ -30,21 +29,26 @@ void input()
 		cout << "There was an error opening the file \n";
 
 	cout << "ICS A MEMBERS \n";
+	cout << endl;
 
 	while (icsA.good())
 	{
-		getline(icsA, adm_no, ',');
-		getline(icsA, sname, ',');
-		getline(icsA, fname, ',');
-		getline(icsA, gender, '\n');
+				getline(icsA, adm_no, ',');
+				getline(icsA, sname, ',');
+				getline(icsA, fname, ',');
+				getline(icsA, gender, '|');
 
-	}
+				cout << adm_no<<setw(2) << sname <<setw(2)<< fname <<setw(2)<< gender<<setw(2) << endl;
 
+		}
+	
+	cout << endl;
 	cout << "------------------------------------------" << "\n";
 	cout << "\n";
 
 
 	cout << "ICS B MEMBERS \n";
+	cout << endl;
 
 	ifstream icsB("inputICSB.csv");
 
@@ -52,21 +56,26 @@ void input()
 		cout << "There was an error opening the file \n";
 
 
-
+	
 	while (icsB.good())
 	{
-		getline(icsB, adm_no, ',');
-		getline(icsB, sname, ',');
-		getline(icsB, fname, ',');
-		getline(icsB, gender, '\n');
+				getline(icsB, adm_no, ',');
+				getline(icsB, sname, ',');
+				getline(icsB, fname, ',');
+				getline(icsB, gender, '|');
+
+	
+			cout << adm_no << sname << fname << gender << endl;
 
 	}
-
+	cout << endl;
 
 	cout << "------------------------------------------" << "\n";
 	cout << "\n";
 
-	cout << "ICS C MEMBERS \n";
+	cout << "ICS C MEMBERS";
+	cout << endl;
+
 
 	ifstream icsC("inputICSC.csv");
 
@@ -76,20 +85,18 @@ void input()
 
 	while (icsC.good())
 	{
-		getline(icsC, adm_no, ',');
-		getline(icsC, sname, ',');
-		getline(icsC, fname, ',');
-		getline(icsC, gender, '\n');
+	
+				getline(icsC, adm_no, ',');
+				getline(icsC, sname, ',');
+				getline(icsC, fname, ',');
+				getline(icsC, gender, '|');
+		
+			
+				cout << adm_no << sname << fname << gender << endl;
 	}
 	cout << "------------------------------------------" << "\n";
 	cout << "\n";
 
-
-	for (i = 0; i<60; i++)
-	{
-		cout << adm_no << setw(2) << sname << fname << setw(2) << gender << endl;
-		cout << endl;
-	}
 
 }
 
@@ -104,10 +111,16 @@ void randomize()
 
 
 
-void printfunction()
+void output()
 {
+	ofstream newicsA("outputICSA.csv");
+
+
+	ofstream newicsB("outputICSB.csv");
 
 }
+
+
 
 int main()
 {
@@ -119,7 +132,7 @@ int main()
 		<< "3. Exit program \n\n";
 
 	cout << "Enter choice: \n";
-h:
+z:
 	cin >> choice;
 
 
@@ -135,8 +148,7 @@ h:
 
 	case '2':
 	{
-		input();
-		printfunction();
+		output();
 		break;
 	}
 
@@ -150,7 +162,7 @@ h:
 	default:
 	{
 		cout << "Please enter valid choice! \n";
-		goto h;
+		goto z;
 		break;
 	}
 
