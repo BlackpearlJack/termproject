@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <vector>
 
 using namespace std;
@@ -11,9 +12,10 @@ string fname, sname, adm_no, gender;
 string icsAll[113][4];
 string icsA[57][4];
 string icsB[58][4];
-string girls[42][4];
-string boys[71][4];
+string icsGirls[42][4];
+string icsBoys[71][4];
 
+void trial();
 
 void input()
 {
@@ -99,25 +101,28 @@ void input()
 
 void randomize()
 {
-	int i, j;
+	int row, col;
 
 	ifstream icsa("inputICSA.csv");
-
+	
 
 	if (!icsa.is_open())
 	cout << "There was an error opening the file \n";
 	
 	while (icsa.good())
 	{
-		for (i = 0; i < 30; i++)
+		
+		for (row = 0; row < 30; row++)
 		{
-			for (j = 0; j < 4; j++)
+
+			for (col = 0; col < 4; col++)
 			{
-				if (j == 3) {
-					getline(icsa, icsAll[i][j], '|');
+				if (col == 3) {
+					getline(icsa, icsAll[row][col], '|');
+					
 				}
 				else {
-					getline(icsa, icsAll[i][j], ',');
+					getline(icsa, icsAll[row][col], ',');
 				}
 			}
 		}
@@ -132,15 +137,16 @@ void randomize()
 
 	while (icsb.good())
 	{
-		for (i = 30; i < 58; i++)
+		for (row = 30; row < 58; row++)
 		{
-			for (j = 0; j < 4; j++)
+			for (col = 0; col < 4; col++)
 			{
-				if (j == 3) {
-					getline(icsb, icsAll[i][j], '|');
+				if (col == 3) {
+					getline(icsb, icsAll[row][col], '|');
+					
 				}
 				else {
-					getline(icsb, icsAll[i][j], ',');
+					getline(icsb, icsAll[row][col], ',');
 				}
 			}
 		}
@@ -154,15 +160,15 @@ void randomize()
 
 	while (icsc.good())
 	{
-		for (i = 58; i < 113; i++)
+		for (row = 58; row < 113; row++)
 		{
-			for (j = 0; j < 4; j++)
+			for (col = 0; col < 4; col++)
 			{
-				if (j == 3) {
-					getline(icsc, icsAll[i][j], '|');
+				if (col == 3) {
+					getline(icsc, icsAll[row][col], '|');
 				}
 				else {
-					getline(icsc, icsAll[i][j], ',');
+					getline(icsc, icsAll[row][col], ',');
 				}
 			}
 		}
@@ -178,7 +184,6 @@ void randomize()
 	}
 
 	cout << endl; */
-
 	
 
 
@@ -214,7 +219,7 @@ z:
 
 	case '2':
 	{
-		randomize();
+		trial();
 		break;
 	}
 
@@ -241,4 +246,87 @@ z:
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void trial()
+{
+	int row, col;
+	ifstream icsa("inputICSA.csv");
+
+	if (!icsa.is_open())
+	{
+		cout << "There was an error opening the file \n";
+	}
+
+	while (icsa.good())
+	{
+  		getline(icsa, adm_no, ',');
+		getline(icsa, sname, ',');
+		getline(icsa, fname, ',');
+		getline(icsa, gender, '\n');
+
+		if (gender == "M")
+		{
+			
+		}
+
+		else 
+			if(gender == "F")
+		{
+			
+			
+		}
+
+		
+	}
+
+	ifstream icsb("inputICSB.csv");
+
+	if (!icsb.is_open())
+		cout << "There was an error opening the file \n";
+
+	while (icsb.good())
+	{
+		getline(icsb, adm_no, ',');
+		getline(icsb, sname, ',');
+		getline(icsb, fname, ',');
+		getline(icsb, gender, '\n');
+
+	}
+	
+	ifstream icsc("inputICSC.csv");
+	
+	if (!icsc.is_open())
+		cout << "There was an error opening the file \n";
+
+	while (icsc.good())
+	{
+		getline(icsc, adm_no, ',');
+		getline(icsc, sname, ',');
+		getline(icsc, fname, ',');
+		getline(icsc, gender, '\n');
+	}
+
+
+
+
+
+
+}
 
