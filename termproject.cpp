@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <iostream>
-#include <stdio.h>
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -9,34 +8,31 @@
 using namespace std;
 
 string fname, sname, adm_no, gender;
-string icsAll[113][3];
-string newicsA[57][3];
-string newicsB[58][3];
-string girls[42][3];
-string boys[71][3];
-string icsA[30][3];
-string icsB[28][3];
-string icsC[58][3];
+string icsAll[113][4];
+string icsA[57][4];
+string icsB[58][4];
+string girls[42][4];
+string boys[71][4];
+
 
 void input()
 {
-	int i, j;
 
-	ifstream icsA("inputICSA.csv");
+	ifstream icsa("inputICSA.csv");
 
 
-	if (!icsA.is_open())
+	if (!icsa.is_open())
 		cout << "There was an error opening the file \n";
 
 	cout << "ICS A MEMBERS \n";
 	cout << endl;
 
-	while (icsA.good())
+	while (icsa.good())
 	{
-				getline(icsA, adm_no, ',');
-				getline(icsA, sname, ',');
-				getline(icsA, fname, ',');
-				getline(icsA, gender, '|');
+				getline(icsa, adm_no, ',');
+				getline(icsa, sname, ',');
+				getline(icsa, fname, ',');
+				getline(icsa, gender, '|');
 
 				cout << adm_no<<setw(2) << sname <<setw(2)<< fname <<setw(2)<< gender<<setw(2) << endl;
 
@@ -50,19 +46,19 @@ void input()
 	cout << "ICS B MEMBERS \n";
 	cout << endl;
 
-	ifstream icsB("inputICSB.csv");
+	ifstream icsb("inputICSB.csv");
 
-	if (!icsB.is_open())
+	if (!icsb.is_open())
 		cout << "There was an error opening the file \n";
 
 
 	
-	while (icsB.good())
+	while (icsb.good())
 	{
-				getline(icsB, adm_no, ',');
-				getline(icsB, sname, ',');
-				getline(icsB, fname, ',');
-				getline(icsB, gender, '|');
+				getline(icsb, adm_no, ',');
+				getline(icsb, sname, ',');
+				getline(icsb, fname, ',');
+				getline(icsb, gender, '|');
 
 	
 			cout << adm_no << sname << fname << gender << endl;
@@ -77,19 +73,19 @@ void input()
 	cout << endl;
 
 
-	ifstream icsC("inputICSC.csv");
+	ifstream icsc("inputICSC.csv");
 
 
-	if (!icsC.is_open())
+	if (!icsc.is_open())
 		cout << "There was an error opening the file \n";
 
-	while (icsC.good())
+	while (icsc.good())
 	{
 	
-				getline(icsC, adm_no, ',');
-				getline(icsC, sname, ',');
-				getline(icsC, fname, ',');
-				getline(icsC, gender, '|');
+				getline(icsc, adm_no, ',');
+				getline(icsc, sname, ',');
+				getline(icsc, fname, ',');
+				getline(icsc, gender, '|');
 		
 			
 				cout << adm_no << sname << fname << gender << endl;
@@ -103,20 +99,88 @@ void input()
 
 void randomize()
 {
+	int i, j;
+
+	ifstream icsa("inputICSA.csv");
+
+
+	if (!icsa.is_open())
+	cout << "There was an error opening the file \n";
+	
+	while (icsa.good())
+	{
+		for (i = 0; i < 30; i++)
+		{
+			for (j = 0; j < 4; j++)
+			{
+				if (j == 3) {
+					getline(icsa, icsAll[i][j], '|');
+				}
+				else {
+					getline(icsa, icsAll[i][j], ',');
+				}
+			}
+		}
+	}
+
+	ifstream icsb("inputICSB.csv");
+
+	if (!icsb.is_open())
+	cout << "There was an error opening the file \n";
 
 
 
+	while (icsb.good())
+	{
+		for (i = 30; i < 58; i++)
+		{
+			for (j = 0; j < 4; j++)
+			{
+				if (j == 3) {
+					getline(icsb, icsAll[i][j], '|');
+				}
+				else {
+					getline(icsb, icsAll[i][j], ',');
+				}
+			}
+		}
+	}
 
-}
+	ifstream icsc("inputICSC.csv");
 
 
+	if (!icsc.is_open())
+	cout << "There was an error opening the file \n";
 
-void output()
-{
-	ofstream newicsA("outputICSA.csv");
+	while (icsc.good())
+	{
+		for (i = 58; i < 113; i++)
+		{
+			for (j = 0; j < 4; j++)
+			{
+				if (j == 3) {
+					getline(icsc, icsAll[i][j], '|');
+				}
+				else {
+					getline(icsc, icsAll[i][j], ',');
+				}
+			}
+		}
+	}
 
 
-	ofstream newicsB("outputICSB.csv");
+	/* for (int a = 0; a <113; a++) 
+	{
+		for (int b = 0; b < 4; b++) 
+		{
+			cout << icsAll[a][b];
+		}
+	}
+
+	cout << endl; */
+
+	
+
 
 }
 
@@ -135,6 +199,8 @@ int main()
 z:
 	cin >> choice;
 
+	cout << endl;
+
 
 	switch (choice)
 	{
@@ -148,7 +214,7 @@ z:
 
 	case '2':
 	{
-		output();
+		randomize();
 		break;
 	}
 
