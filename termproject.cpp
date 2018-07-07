@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <iomanip>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <Windows.h>
@@ -21,7 +22,7 @@ void input()
 {
 
 	ifstream icsa("inputICSA.csv");
-	
+	string temp,data;
 	if (!icsa.is_open())
 		cout << "There was an error opening the file \n";
 
@@ -29,15 +30,12 @@ void input()
 	{
 		for (int i = 0; i < 30; i++)
 		{
-			for (int j = 0; j < 4; j++)
+			getline(icsa, temp);
+			stringstream ssa(temp);
+			for (int j = 0; getline(ssa, data, ','); j++)
 			{
-				if (j == 3) {
-					getline(icsa, icsAll[i][j]), '\n';
-				}
-				else {
-					
-					getline(icsa, icsAll[i][j], ',');
-				}
+				icsAll[i][j] = data;
+
 			}
 		}
 	}
@@ -51,19 +49,15 @@ void input()
 	{
 		for (int i = 30; i < 58; i++)
 		{
-			for (int j = 0; j < 4; j++)
+			getline(icsb, temp);
+			stringstream ssb(temp);
+			for (int j = 0; getline(ssb, data, ','); j++)
 			{
-				if (j == 3) {
-					getline(icsb, icsAll[i][j]), '\r';
-				}
-				else {
-					getline(icsb, icsAll[i][j], ',');
-				}
+				icsAll[i][j] = data;
 			}
 		}
 
 	}
-
 	ifstream icsc("inputICSC.csv");
 	
 	if (!icsc.is_open())
@@ -73,14 +67,11 @@ void input()
 	{
 		for (int i = 58; i < 113; i++)
 		{
-			for (int j = 0; j < 4; j++)
+			getline(icsc, temp);
+			stringstream ssc(temp);
+			for (int j = 0; getline(ssc, data, ','); j++)
 			{
-				if (j == 3) {
-					getline(icsc, icsAll[i][j]), '\r';
-				}
-				else {
-					getline(icsc, icsAll[i][j], ',');
-				}
+				icsAll[i][j] = data;
 			}
 		}
 
@@ -182,10 +173,16 @@ void printold()
 
 void randomize() 
 {
+	input();
+
+	for (int i=0; i < 113; i++) {
+		for (int j = 0; j < 113 - i; j++) {
+
+		}
+	}
+
 	sort(icsAll[113][4].begin(), icsAll[113][4].end());
-
-
-
+	
 
 }
 
@@ -303,7 +300,7 @@ int main()
 	case '2':
 		{
 
-		printnew();
+		randomize();
 		break;
 
 		}
@@ -319,7 +316,7 @@ int main()
 	case '4':
 		{
 
-		cout << "Program is exiting!"<<endl;
+		cout << "Program is exiting....."<<endl;
 		Sleep(3000);
 		exit(0);
 		break;
