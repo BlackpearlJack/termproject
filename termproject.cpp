@@ -7,16 +7,15 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-#include <Windows.h>
-#include <algorithm>
+#include <windows.h>
 
 using namespace std;
 
 string icsAll[115][4];
-string girls[42][4];
-string boys[71][4];
+string icsGirls[42][4];
+string icsBoys[71][4];
 string icsA[57][4];
-string icsB[58][4];
+string icsB[56][4];
 
 void input()
 {
@@ -175,15 +174,63 @@ void randomize()
 {
 	input();
 
-	for (int i=0; i < 113; i++) {
-		for (int j = 0; j < 113 - i; j++) {
+	for (int i=0; i < 113; i++)
+	{
+		for (int j = 0; j < 113 - i-1; j++) 
+		{
+			if (icsAll[j][3] > icsAll[j + 1][3])
+			{
+				string temp[4];
+				for (int a = 0; a < 4; a++)
+				{
+					temp[a] = icsAll[j][a];
+					icsAll[j][a] = icsAll[j + 1][a];
+					icsAll[j + 1][a] = temp[a];
+				}
+			}
 
 		}
 	}
 
-	sort(icsAll[113][4].begin(), icsAll[113][4].end());
-	
+	for (int i = 0; i < 42; i++) {
+		for (int j = 0; j < 4; j++) {
+			icsGirls[i][j] = icsAll[i][j];
+		}
+	}
 
+	for (int i = 0; i < 71; i++) {
+		for (int j = 0; j < 4; j++) {
+			icsBoys[i][j] = icsAll[i + 42][j];
+		}
+	}
+
+	for (int i = 0; i < 42; i++) 
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (i < 21) {
+				icsA[i][j] = icsGirls[i][j];
+			}
+			else {
+				icsB[i-21][j] = icsGirls[i][j];
+			}
+		}
+	}
+
+	for (int i = 0; i < 71; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (i < 36) 
+			{
+				icsA[i+21][j] = icsBoys[i][j];
+			}
+			else 
+			{
+				icsB[i-15][j] = icsBoys[i][j];
+			}
+		}
+	}
 }
 
 void printnew()
@@ -191,39 +238,109 @@ void printnew()
 	input();
 	randomize();
 
-	cout << "New ICS A Members" << endl;
-	cout << "----------------------------------------------------------" << endl;
+	char choice;
 
-	for (int i = 0; i < 57; i++)
+	cout << "Select the group you want to print" << endl
+		<< "1.New ICS A" << endl
+		<< "2.New ICS B" << endl
+		<< "3.ICS Males" << endl
+		<< "4.ICS Females" << endl;
+
+	cout << endl;
+
+	cout << "Enter choice: " << endl;
+z:
+	cin >> choice;
+
+	cout << endl;
+
+	switch (choice)
 	{
-		for (int j = 0; j < 4; j++) 
+	case '1':
 		{
-			cout << icsA[i][j];
+		cout << "New ICS A Members" << endl;
+		cout << "----------------------------------------------------------" << endl;
 
+		for (int i = 0; i < 57; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				cout << icsA[i][j];
+			}
+			cout << endl;
 		}
 		cout << endl;
-	}
-		
-	cout << endl;
-	cout << endl;
-	
+		cout << endl;
 
-	cout << "New ICS B Members" << endl;
-	cout << "----------------------------------------------------------" << endl;
+		break;
+		}
 
-	for (int i = 0; i < 58; i++)
-	{
-		for (int j = 0; j < 4; j++)
+	case '2':
 		{
-			cout << icsB[i][j];
+		cout << "New ICS B Members" << endl;
+		cout << "----------------------------------------------------------" << endl;
 
+		for (int i = 0; i < 58; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				cout << icsB[i][j];
+			}
+			cout << endl;
 		}
 		cout << endl;
-	}
+		cout << endl;
 
-	cout << endl;
-	cout << endl;
-	
+		break;
+		}
+
+	case '3':
+		{
+		cout << "ICS Males Members" << endl;
+		cout << "----------------------------------------------------------" << endl;
+
+		for (int i = 0; i < 71; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				cout << icsBoys[i][j];
+			}
+
+			cout << endl;
+		}
+		cout << endl;
+		cout << endl;
+
+		break;
+		}
+
+	case '4':
+		{
+		cout << "ICS Female Members" << endl;
+		cout << "----------------------------------------------------------" << endl;
+
+		for (int i = 0; i < 42; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				cout << icsGirls[i][j];
+			}
+
+			cout << endl;
+		}
+		cout << endl;
+		cout << endl;
+
+		break;
+		}
+
+	default:
+		{
+		cout << "Enter valid choice!" << endl;
+		goto z;
+		break;
+		}
+ }	
 
 }
 
@@ -231,19 +348,22 @@ void printcsv()
 {
 	randomize();
 
-	ofstream newicsa("outputICA.csv");
+	ofstream newicsa("outputICSA.csv");
 
 	newicsa.is_open();
 
-	while (newicsa.good())
+	if (newicsa.good())
 	{
 		for (int i = 0; i < 57; i++)
 		{
-			for (int j = 0; j < 4; j++)
+
+			for (int j = 0; j < 3; j++)
 			{
-		
+				newicsa << icsA[i][j]<<",";
 
 			}
+			newicsa << icsA[i][3];
+			newicsa << endl;
 		}
 	}
 
@@ -253,15 +373,18 @@ void printcsv()
 
 	newicsb.is_open();
 
-	while (newicsb.good())
+	if (newicsb.good())
 	{
 		for (int i = 0; i < 58; i++)
 		{
-			for (int j = 0; j < 4; j++)
+
+			for (int j = 1; j < 3; j++)
 			{
-				
+				newicsb << icsB[i][j] << ",";
 
 			}
+			newicsb << icsB[i][3];
+			newicsb << endl;
 		}
 	}
 
@@ -282,7 +405,7 @@ int main()
 
 	cout << "Enter choice: \n";
 	h:
-	cin >> choice;
+	cin>>choice;
 
 	cout << endl;
 
@@ -300,7 +423,7 @@ int main()
 	case '2':
 		{
 
-		randomize();
+		printnew();
 		break;
 
 		}
