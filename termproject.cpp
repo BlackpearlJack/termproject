@@ -19,7 +19,6 @@ string icsB[56][4];
 
 void input()
 {
-
 	ifstream icsa("inputICSA.csv");
 	string temp,data;
 	if (!icsa.is_open())
@@ -34,7 +33,6 @@ void input()
 			for (int j = 0; getline(ssa, data, ','); j++)
 			{
 				icsAll[i][j] = data;
-
 			}
 		}
 	}
@@ -97,77 +95,77 @@ void printold()
 	 cout << endl;
 
 	 switch (choice)
- {
-	 case '1':
 	 {
-		int i = 0;
-		int k = 30;
+		 case '1':
+		 {
+			int i = 0;
+			int k = 30;
 		 
-		cout << "ICS A Members" << endl;
-		cout << "----------------------------------------------------------" << endl;
+			cout << "ICS A Members" << endl;
+			cout << "----------------------------------------------------------" << endl;
 
-		for (i; i < k; i++)
-		 {
-			 for (int j = 0; j < 4; j++)
+			for (i; i < k; i++)
 			 {
-				 cout << icsAll[i][j];
+				 for (int j = 0; j < 4; j++)
+				 {
+					 cout << icsAll[i][j];
+				 }
+				 cout << endl;
 			 }
+
+			cout << endl;
+			 break;
+		 }
+		 case '2':
+		 {
+			int i = 30;
+			int k = 58;
+
+			cout << "ICS B Members" << endl;
+			cout << "----------------------------------------------------------" << endl;
+
+			 for (i; i < k; i++)
+			 {
+				 for (int j = 0; j < 4; j++)
+				 {
+					 cout << icsAll[i][j];
+				 }
+				 cout << endl;
+			 }
+
 			 cout << endl;
+			 break;
+
+			}
+		 case '3':
+		 {
+			 int i = 58;
+			 int k = 113;
+
+			 cout << "ICS C Members" << endl;
+			 cout << "----------------------------------------------------------" << endl;
+
+			 for (i; i < k; i++)
+			 {
+				 for (int j = 0; j < 4; j++)
+				 {
+					 cout << icsAll[i][j];
+				 }
+				 cout << endl;
+			 }
+
+			 cout << endl;
+			 break;
 		 }
 
-		cout << endl;
-		 break;
-	 }
-	 case '2':
-	 {
-		int i = 30;
-		int k = 58;
-
-		cout << "ICS B Members" << endl;
-		cout << "----------------------------------------------------------" << endl;
-
-		 for (i; i < k; i++)
+		 default :
 		 {
-			 for (int j = 0; j < 4; j++)
-			 {
-				 cout << icsAll[i][j];
-			 }
-			 cout << endl;
+			 cout << "Enter valid choice !" << endl;
+			 goto g;
 		 }
 
 		 cout << endl;
-		 break;
-
-		}
-	 case '3':
-	 {
-		 int i = 58;
-		 int k = 113;
-
-		 cout << "ICS C Members" << endl;
-		 cout << "----------------------------------------------------------" << endl;
-
-		 for (i; i < k; i++)
-		 {
-			 for (int j = 0; j < 4; j++)
-			 {
-				 cout << icsAll[i][j];
-			 }
-			 cout << endl;
 		 }
-
-		 cout << endl;
-		 break;
-	 }
-
-	 default :
-	 {
-		 cout << "Enter valid choice !" << endl;
-		 goto g;
-	 }
-
-	 cout << endl;
-	 }
 }
 
 void randomize() 
@@ -181,6 +179,7 @@ void randomize()
 			if (icsAll[j][3] > icsAll[j + 1][3])
 			{
 				string temp[4];
+
 				for (int a = 0; a < 4; a++)
 				{
 					temp[a] = icsAll[j][a];
@@ -192,14 +191,18 @@ void randomize()
 		}
 	}
 
-	for (int i = 0; i < 42; i++) {
-		for (int j = 0; j < 4; j++) {
+	for (int i = 0; i < 42; i++) 
+	{
+		for (int j = 0; j < 4; j++) 
+		{
 			icsGirls[i][j] = icsAll[i][j];
 		}
 	}
 
-	for (int i = 0; i < 71; i++) {
-		for (int j = 0; j < 4; j++) {
+	for (int i = 0; i < 71; i++) 
+	{
+		for (int j = 0; j < 4; j++) 
+		{
 			icsBoys[i][j] = icsAll[i + 42][j];
 		}
 	}
@@ -360,9 +363,9 @@ void printcsv()
 			for (int j = 0; j < 3; j++)
 			{
 				newicsa << icsA[i][j]<<",";
-
 			}
 			newicsa << icsA[i][3];
+
 			newicsa << endl;
 		}
 	}
@@ -381,9 +384,9 @@ void printcsv()
 			for (int j = 1; j < 3; j++)
 			{
 				newicsb << icsB[i][j] << ",";
-
 			}
 			newicsb << icsB[i][3];
+
 			newicsb << endl;
 		}
 	}
@@ -391,6 +394,7 @@ void printcsv()
 	newicsb.close();
 
 	cout << "Names printed to outputICSA.csv and outputICSB.csv" << endl;
+	cout << endl;
 }
 
 int main()
