@@ -12,8 +12,8 @@
 using namespace std;
 
 string icsAll[115][4];
-string icsGirls[42][4];
-string icsBoys[71][4];
+string icsFemales[42][4];
+string icsMales[71][4];
 string icsA[57][4];
 string icsB[56][4];
 
@@ -195,7 +195,7 @@ void randomize()
 	{
 		for (int j = 0; j < 4; j++) 
 		{
-			icsGirls[i][j] = icsAll[i][j];
+			icsFemales[i][j] = icsAll[i][j];
 		}
 	}
 
@@ -203,7 +203,7 @@ void randomize()
 	{
 		for (int j = 0; j < 4; j++) 
 		{
-			icsBoys[i][j] = icsAll[i + 42][j];
+			icsMales[i][j] = icsAll[i + 42][j];
 		}
 	}
 
@@ -212,10 +212,10 @@ void randomize()
 		for (int j = 0; j < 4; j++)
 		{
 			if (i < 21) {
-				icsA[i][j] = icsGirls[i][j];
+				icsA[i][j] = icsFemales[i][j];
 			}
 			else {
-				icsB[i-21][j] = icsGirls[i][j];
+				icsB[i-21][j] = icsFemales[i][j];
 			}
 		}
 	}
@@ -226,11 +226,11 @@ void randomize()
 		{
 			if (i < 36) 
 			{
-				icsA[i+21][j] = icsBoys[i][j];
+				icsA[i+21][j] = icsMales[i][j];
 			}
 			else 
 			{
-				icsB[i-15][j] = icsBoys[i][j];
+				icsB[i-15][j] = icsMales[i][j];
 			}
 		}
 	}
@@ -283,7 +283,7 @@ z:
 		cout << "New ICS B Members" << endl;
 		cout << "----------------------------------------------------------" << endl;
 
-		for (int i = 0; i < 58; i++)
+		for (int i = 0; i < 56; i++)
 		{
 			for (int j = 0; j < 4; j++)
 			{
@@ -306,7 +306,7 @@ z:
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				cout << icsBoys[i][j];
+				cout << icsMales[i][j];
 			}
 
 			cout << endl;
@@ -326,7 +326,7 @@ z:
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				cout << icsGirls[i][j];
+				cout << icsFemales[i][j];
 			}
 
 			cout << endl;
@@ -351,50 +351,83 @@ void printcsv()
 {
 	randomize();
 
-	ofstream newicsa("outputICSA.csv");
+	char choice;
 
-	newicsa.is_open();
+	cout << "1. ICS A" << endl
+		 << "2. ICS B" << endl;
 
-	if (newicsa.good())
-	{
-		for (int i = 0; i < 57; i++)
-		{
-
-			for (int j = 0; j < 3; j++)
-			{
-				newicsa << icsA[i][j]<<",";
-			}
-			newicsa << icsA[i][3];
-
-			newicsa << endl;
-		}
-	}
-
-	newicsa.close();
-
-	ofstream newicsb("outputICSB.csv");
-
-	newicsb.is_open();
-
-	if (newicsb.good())
-	{
-		for (int i = 0; i < 58; i++)
-		{
-
-			for (int j = 1; j < 3; j++)
-			{
-				newicsb << icsB[i][j] << ",";
-			}
-			newicsb << icsB[i][3];
-
-			newicsb << endl;
-		}
-	}
-
-	newicsb.close();
-
-	cout << "Names printed to outputICSA.csv and outputICSB.csv" << endl;
 	cout << endl;
+
+	cout << "Enter the group you want to print: " << endl;
+x:
+	cin >> choice;
+
+	cout << endl;
+
+	switch (choice)
+	{
+		case '1':
+		{	ofstream newicsa("outputICSA.csv");
+
+			newicsa.is_open();
+
+			if (newicsa.good())
+			{
+				for (int i = 0; i < 57; i++)
+				{
+
+					for (int j = 0; j < 3; j++)
+					{
+						newicsa << icsA[i][j] << ",";
+					}
+					newicsa << icsA[i][3];
+
+					newicsa << endl;
+				}
+			}
+
+			newicsa.close();
+
+			cout << "Names printed to outputICSA.csv" << endl;
+			cout << endl;
+
+			break;
+		}
+
+		case '2':
+		{
+			ofstream newicsb("outputICSB.csv");
+
+			newicsb.is_open();
+
+			if (newicsb.good())
+			{
+				for (int i = 0; i < 58; i++)
+				{
+
+					for (int j = 1; j < 3; j++)
+					{
+						newicsb << icsB[i][j] << ",";
+					}
+					newicsb << icsB[i][3];
+
+					newicsb << endl;
+				}
+			}
+
+			newicsb.close();
+
+			cout << "Names printed to outputICSB.csv" << endl;
+			cout << endl;
+			break;
+		}
+		default:
+		{
+				cout << "Enter valid choice!" << endl;
+				goto x;
+				break;
+		}
+	}
 }
 
 int main()
@@ -436,19 +469,51 @@ int main()
 		{
 
 		printcsv();
+		goto l;
 		break;
 
 		}
 
 	case '4':
+	{
+
+		char yesno;
+
+		cout << "Are you sure you want to exit? (Y/N) \n";
+	b:
+		cin >> yesno;
+
+		switch (yesno)
 		{
+			case 'y':
+			{
 
-		cout << "Program is exiting....."<<endl;
-		Sleep(3000);
-		exit(0);
-		break;
+				cout << "Program is exiting" << endl;
+				cout << endl;
+				l:
+				cout << "Program by Mashi254" << endl;
+				cout << "To donate bitcoin:" << endl
+					 << "Bitcoin Adress: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+				Sleep(6000);
+				exit(0);
+				break;
+			}
+
+			case 'n':
+			{
+				system("cls");
+				main();
+				break;
+			}
+
+			default:
+			{
+				cout << "Enter valid choice!" << endl;
+				goto b;
+				break;
+			}
 		}
-
+	}
 	default:
 		{
 
