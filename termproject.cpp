@@ -2,14 +2,11 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <stdio.h>
 #include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <string>
-#include <algorithm>
 #include <windows.h>
-#include <cstdlib>
 
 using namespace std;
 
@@ -110,7 +107,7 @@ int main()
 				z:
 				cout << "Program by Mashi254" << endl;
 				cout << "To donate bitcoin:" << endl
-					 << "Bitcoin Adress: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+					 << "Bitcoin Address: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
 				Sleep(6000);
 				exit(0);
 				break;
@@ -676,7 +673,7 @@ void printcsv()
 			p:
 			cout << "Program by Mashi254" << endl;
 			cout << "To donate bitcoin:" << endl
-				<< "Bitcoin Adress: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+				<< "Bitcoin Address: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
 			Sleep(4000);
 			exit(0);
 			break;
@@ -746,7 +743,7 @@ void printcsv()
 			y:
 			cout << "Program by Mashi254" << endl;
 			cout << "To donate bitcoin:" << endl
-				<< "Bitcoin Adress: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+				<< "Bitcoin Address: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
 			Sleep(6000);
 			exit(0);
 			break;
