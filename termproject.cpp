@@ -26,17 +26,10 @@ void printnew();
 
 void printcsv();
 
-
 int main()
 {	
 	char choice;
 	cout << "Welcome to the Student Shuffle Algorithim!";
-	cout << ".";
-	Sleep(700);
-	cout << ".";
-	Sleep(700);
-	cout << ".";
-	Sleep(700);
 	cout << endl;
 		h:
 	cout<< "\t 1. Display names \n"
@@ -105,9 +98,7 @@ int main()
 				cout << endl;
 				cout << endl;
 				z:
-				cout << "Program by Mashi254" << endl;
-				cout << "To donate bitcoin:" << endl
-					 << "Bitcoin Address: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+				cout << "Thank you for using our program!" << endl;
 				Sleep(6000);
 				exit(0);
 				break;
@@ -263,6 +254,7 @@ void printold()
 				cout << icsAll[i][j];
 			}
 			cout << endl;
+			Sleep(350);
 		}
 
 		cout << endl;
@@ -283,6 +275,7 @@ void printold()
 				cout << icsAll[i][j];
 			}
 			cout << endl;
+			Sleep(350);
 		}
 
 		cout << endl;
@@ -304,6 +297,7 @@ void printold()
 				cout << icsAll[i][j];
 			}
 			cout << endl;
+			Sleep(350);
 		}
 
 		cout << endl;
@@ -374,7 +368,7 @@ void randomize()
 	{
 		for (int j = 0; j < 71 - i - 1; j++)
 		{
-			if (icsMales[j][0] > icsMales[j + 1][0])
+			if (icsMales[j][2] > icsMales[j + 1][2])
 			{
 				string temp[4];
 
@@ -392,7 +386,7 @@ void randomize()
 	{
 		for (int j = 0; j < 42 - i - 1; j++)
 		{
-			if (icsFemales[j][0] > icsFemales[j + 1][0])
+			if (icsFemales[j][2] > icsFemales[j + 1][2])
 			{
 				string temp[4];
 
@@ -512,6 +506,7 @@ void printnew()
 				cout << icsA[i][j];
 			}
 			cout << endl;
+			Sleep(350);
 		}
 		cout << endl;
 		cout << endl;
@@ -531,6 +526,7 @@ void printnew()
 				cout << icsB[i][j];
 			}
 			cout << endl;
+			Sleep(350);
 		}
 		cout << endl;
 		cout << endl;
@@ -550,8 +546,8 @@ void printnew()
 			{
 				cout << icsMales[i][j];
 			}
-
 			cout << endl;
+			Sleep(350);
 		}
 		cout << endl;
 		cout << endl;
@@ -570,8 +566,8 @@ void printnew()
 			{
 				cout << icsFemales[i][j];
 			}
-
 			cout << endl;
+			Sleep(350);
 		}
 		cout << endl;
 		cout << endl;
@@ -660,7 +656,7 @@ void printcsv()
 	{
 		case 'y':
 		{
-			system("inputICSA.csv");
+			system("outputICSA.csv");
 
 			system("cls");
 			goto p;
@@ -670,10 +666,9 @@ void printcsv()
 
 		case 'n':
 		{
-			p:
-			cout << "Program by Mashi254" << endl;
-			cout << "To donate bitcoin:" << endl
-				<< "Bitcoin Address: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+		p:
+			system("cls");
+			cout<<"Thank you for using our program!"<<endl;
 			Sleep(4000);
 			exit(0);
 			break;
@@ -740,10 +735,9 @@ void printcsv()
 
 		case 'n':
 		{
-			y:
-			cout << "Program by Mashi254" << endl;
-			cout << "To donate bitcoin:" << endl
-				<< "Bitcoin Address: 3N3bNfaMKW3gwXQDGY4tMZkaX7tFTqq5bW" << endl;
+		y:
+			system("cls");
+			cout << "Thank you for using our program!" << endl;
 			Sleep(6000);
 			exit(0);
 			break;
